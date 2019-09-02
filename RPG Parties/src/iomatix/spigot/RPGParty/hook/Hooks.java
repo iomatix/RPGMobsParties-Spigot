@@ -17,16 +17,18 @@ public class Hooks
     }
     
     public static boolean isInstancesActive() {
+    	
         return Bukkit.getPluginManager().getPlugin("Instances") != null;
     }
     
     public static IParty getParty(final Player player) {
         IParty party = null;
         if (isInstancesActive()) {
+        	
             party = InstancesHook.getParty(player);
         }
         if (party == null) {
-            Hooks.parties.getJoinedParty(player);
+        	party = Hooks.parties.getJoinedParty(player);
         }
         return party;
     }

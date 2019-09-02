@@ -73,11 +73,13 @@ public class PartyListener implements Listener
             return;
         }
         if (this.plugin.isDebug()) {
-            this.plugin.getLogger().info("Exp already being shared with " + event.getPlayerData().getPlayerName());
+            this.plugin.getLogger().info("Exp sharing - " + event.getPlayerData().getPlayerName());
         }
         if (this.shared) {
             return;
         }
+        
+        
         final IParty party = Hooks.getParty(event.getPlayerData().getPlayer());
         if (this.plugin.isDebug()) {
             this.plugin.getLogger().info(event.getPlayerData().getPlayerName() + " has a party? " + (party != null));
@@ -89,7 +91,7 @@ public class PartyListener implements Listener
                 public void run() {
                 	party.giveExp(event.getPlayerData().getPlayer(), event.getExp(), event.getSource());           
                 }
-            }, 25L);
+            }, 15L);
             this.shared = false;
             if (this.plugin.isDebug()) {
                 this.plugin.getLogger().info("Exp was shared!");
