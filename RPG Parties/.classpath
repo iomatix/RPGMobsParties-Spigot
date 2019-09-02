@@ -11,5 +11,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="G:/Minecraft - Server/_Plugins/_Depend/instances-1.24.jar"/>
 	<classpathentry kind="lib" path="G:/Minecraft - Server/_Moje_Pluginy/__REPOSITORIES/RPGLeveledMobs-Spigot/RPG Leveled Mobs/target/RPG Leveled Mobs.jar"/>
+	<classpathentry kind="lib" path="G:/Minecraft - Server/_Plugins/_Depend/Vault.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

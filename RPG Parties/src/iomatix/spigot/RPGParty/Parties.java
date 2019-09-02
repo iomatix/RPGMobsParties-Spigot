@@ -1,6 +1,7 @@
 package iomatix.spigot.RPGParty;
 
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import com.rit.sucy.config.FilterType;
 import java.util.List;
@@ -19,6 +20,8 @@ import iomatix.spigot.RPGParty.command.CmdDecline;
 import iomatix.spigot.RPGParty.command.CmdAccept;
 import iomatix.spigot.RPGParty.mccore.PartyBoardManager;
 import iomatix.spigot.RPGParty.hook.Hooks;
+import iomatix.spigot.RPGParty.hook.VaultHandler;
+
 import com.rit.sucy.commands.IFunction;
 import com.rit.sucy.commands.ConfigurableCommand;
 import com.rit.sucy.commands.SenderType;
@@ -29,6 +32,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Parties extends JavaPlugin
 {
+	public static Parties Main;
+	
+	public VaultHandler vaultmodule;
+	private void loadModules() 
+	{
+		Bukkit.getScheduler().runTaskLaterAsynchronously((Plugin) this, (Runnable) new Runnable() {
+			@Override
+			public void run() {
+		if (Bukkit.getPluginManager().isPluginEnabled("Vault")) {
+		Parties.this.vaultmodule = new VaultHandler();
+		}
+			}
+		}, 40L);	
+	}
+	
     private ArrayList<Party> parties;
     private ArrayList<String> toggled;
     private CommentedLanguageConfig language;
@@ -51,6 +69,8 @@ public class Parties extends JavaPlugin
     }
     
     public void onEnable() {
+    	(Parties.Main = this).loadModules();
+    	
         this.task = new UpdateTask(this);
         final CommentedConfig config = new CommentedConfig((JavaPlugin)this, "config");
         config.saveDefaultConfig();

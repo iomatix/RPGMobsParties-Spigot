@@ -10,6 +10,7 @@ import com.sucy.skill.api.enums.ExpSource;
 import org.bukkit.entity.Player;
 import org.cyberiantiger.minecraft.instances.Party;
 import iomatix.spigot.RPGParty.Parties;
+import iomatix.spigot.RPGParty.inject.Server;
 import iomatix.spigot.RPGParty.IParty;
 
 public class InstancesParty implements IParty
@@ -60,6 +61,28 @@ public class InstancesParty implements IParty
             info.giveExp((double)exp, expSource);
         }
     }
+    @Override
+    public void giveMoney(final Player source, final double amount) {
+        if (this.isEmpty()) {
+            return;
+        }
+        final double baseAmount = amount / (1.0 + (this.party.getMembers().size() - 1) * this.plugin.getMemberModifier());
+        
+
+        final int level = (source == null) ? 0 : source.getLevel();
+        for (final Player member : this.party.getMembers()) {
+            final int lvl = (member == null) ? 0 : member.getLevel();
+            int money = (int)Math.ceil(baseAmount);
+            if (this.plugin.getLevelModifier() > 0.0) {
+                final int dl = lvl - level;
+                money = (int)Math.ceil(baseAmount * Math.pow(2.0, -this.plugin.getLevelModifier() * dl * dl));
+            }
+                Parties.Main.vaultmodule.DepositMoneyToPlayer(source, (double)money);
+                
+            }
+        }
+    
+    
     
     @Override
     public void sendMessage(final Player sender, final String message) {

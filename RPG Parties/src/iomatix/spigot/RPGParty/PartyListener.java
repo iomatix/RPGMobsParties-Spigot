@@ -11,7 +11,7 @@ import com.sucy.skill.api.event.PlayerExperienceGainEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.EventHandler;
 import iomatix.spigot.RPGParty.hook.Hooks;
-import iomatix.spigot.rpgleveledmobs.events.RPGMobsGainExperiecne;
+import iomatix.spigot.rpgleveledmobs.events.RPGMobsGainExperience;
 import iomatix.spigot.rpgleveledmobs.events.RPGMobsGainMoney;
 import org.bukkit.entity.Projectile;
 import org.bukkit.Bukkit;
@@ -25,12 +25,16 @@ public class PartyListener implements Listener
 {
     private Parties plugin;
     private boolean shared;
+    private boolean sharedMoney;
     
     public PartyListener(final Parties plugin) {
         this.shared = false;
+        this.sharedMoney = false;
         this.plugin = plugin;
         plugin.getServer().getPluginManager().registerEvents((Listener)this, (Plugin)plugin);
     }
+    
+    
     
     @EventHandler
     public void onDamage(final EntityDamageByEntityEvent event) {
@@ -68,10 +72,55 @@ public class PartyListener implements Listener
             party.sendMessage(event.getPlayer(), event.getMessage());
         }
     }
-    
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onRPGMobsExperience(final RPGMobsGainExperience event) {
+            if (this.plugin.isDebug()) {
+                this.plugin.getLogger().info("(RPGMOBS) Exp sharing - " + event.getEntity().getName());
+            }
+            if (this.shared) {
+                return;
+            }
+                       
+            final IParty party = Hooks.getParty(event.getEntity());
+            if (this.plugin.isDebug()) {
+                this.plugin.getLogger().info(event.getEntity().getName() + " has a party? " + (party != null));
+            }
+            if (party != null) {
+                this.shared = true;
+                event.setCancelled(true);
+                party.giveExp(event.getEntity(), event.getExp(), ExpSource.MOB);    
+                this.shared = false;
+                if (this.plugin.isDebug()) {
+                    this.plugin.getLogger().info("(RPGMOBS) Exp was shared!");
+                }
+            } 	
+    }
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onRPGMobsGetMoney(final RPGMobsGainMoney event) {
+            if (this.plugin.isDebug()) {
+                this.plugin.getLogger().info("(RPGMOBS) Money sharing - " + event.getEntity().getName());
+            }
+            if (this.sharedMoney) {
+                return;
+            }
+                        
+            final IParty party = Hooks.getParty(event.getEntity());
+            if (this.plugin.isDebug()) {
+                this.plugin.getLogger().info(event.getEntity().getName() + " has a party? " + (party != null));
+            }
+            if (party != null) {
+                this.sharedMoney = true;
+                event.setCancelled(true);
+                party.giveMoney(event.getEntity(),event.getMoney());
+                this.sharedMoney = false;
+                if (this.plugin.isDebug()) {
+                    this.plugin.getLogger().info("(RPGMOBS) Money was shared!");
+                }
+            } 	
+    }
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onExpGain(final PlayerExperienceGainEvent event) {
-    	if(Hooks.isRPGLeveledMobsActive() == true) return;
+    	if(Hooks.isRPGLeveledMobsActive() == true && event.getSource() == ExpSource.MOB) { event.setCancelled(true); return;}
         if (event.getSource() == ExpSource.COMMAND) {
             return;
         }
@@ -99,35 +148,8 @@ public class PartyListener implements Listener
     }
     
     
-    
-    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-    public void onExpGain(final onPlayerGainExp event) {
-    	if(Hooks.isRPGLeveledMobsActive() == true) return;
-        if (event.getSource() == ExpSource.COMMAND) {
-            return;
-        }
-        if (this.plugin.isDebug()) {
-            this.plugin.getLogger().info("Exp sharing - " + event.getPlayerData().getPlayerName());
-        }
-        if (this.shared) {
-            return;
-        }
         
-        
-        final IParty party = Hooks.getParty(event.getPlayerData().getPlayer());
-        if (this.plugin.isDebug()) {
-            this.plugin.getLogger().info(event.getPlayerData().getPlayerName() + " has a party? " + (party != null));
-        }
-        if (party != null) {
-            this.shared = true;
-            party.giveExp(event.getPlayerData().getPlayer(), event.getExp(), event.getSource());    
-            event.setCancelled(true);
-            this.shared = false;
-            if (this.plugin.isDebug()) {
-                this.plugin.getLogger().info("Exp was shared!");
-            }
-        }
-    }
+
     
     @EventHandler
     public void onJoin(final PlayerJoinEvent event) {

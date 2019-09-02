@@ -183,6 +183,33 @@ public class Party implements IParty
         }
     }
     
+    @Override
+    public void giveMoney(final Player source, final double amount) {
+        if (this.getOnlinePartySize() == 0) {
+            return;
+        }
+        final double baseAmount = amount / (1.0 + (this.getOnlinePartySize() - 1) * this.plugin.getMemberModifier());
+        final int level = Server.getLevel(source.getName());
+        for (final String member : this.members) {
+            final Player player = Server.getPlayer(member);
+            if (player != null) {
+                final PlayerData info = Server.getPlayerData(player);
+                final PlayerClass main = info.getMainClass();
+                final int lvl = (main == null) ? 0 : main.getLevel();
+                int money = (int)Math.ceil(baseAmount);
+                if (this.plugin.getLevelModifier() > 0.0) {
+                    final int dl = lvl - level;
+                    money = (int)Math.ceil(baseAmount * Math.pow(2.0, -this.plugin.getLevelModifier() * dl * dl));
+                }
+                Parties.Main.vaultmodule.DepositMoneyToPlayer(source, (double)money);
+                
+            }
+        }
+    
+    }
+    
+    
+    
     public void sendMessage(final String message) {
         for (final String member : this.members) {
             if (Server.isOnline(member)) {
