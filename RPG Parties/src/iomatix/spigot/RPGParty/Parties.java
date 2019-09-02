@@ -5,7 +5,6 @@ import org.bukkit.command.CommandSender;
 import com.rit.sucy.config.FilterType;
 import java.util.List;
 import com.rit.sucy.config.CustomFilter;
-import java.util.Iterator;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.event.HandlerList;

@@ -9,5 +9,6 @@
 			<attribute name="javadoc_location" value="https://hub.spigotmc.org/javadocs/spigot/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="G:/Minecraft - Server/_Plugins/_Depend/instances-1.24.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,5 +1,5 @@
 main: iomatix.spigot.RPGMobsparties.Main
-softdepend: [SkillAPI, RPGLeveledMobs,MCCore]
+softdepend: [SkillAPI, RPGLeveledMobs,MCCore,instances]
 load: POSTWORLD
 name: RPGParties
 version: 1.0
