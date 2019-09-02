@@ -45,6 +45,7 @@ public class InstancesParty implements IParty
         if (this.isEmpty()) {
             return;
         }
+        
         final double baseAmount = amount / (1.0 + (this.party.getMembers().size() - 1) * this.plugin.getMemberModifier());
         final PlayerData data = SkillAPI.getPlayerData((OfflinePlayer)source);
         PlayerClass main = data.getMainClass();

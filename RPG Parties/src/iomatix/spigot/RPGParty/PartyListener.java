@@ -87,8 +87,8 @@ public class PartyListener implements Listener
             }
             if (party != null) {
                 this.shared = true;
+                party.giveExp(event.getEntity(), event.getExp(), ExpSource.COMMAND);   
                 event.setCancelled(true);
-                party.giveExp(event.getEntity(), event.getExp(), ExpSource.MOB);    
                 this.shared = false;
                 if (this.plugin.isDebug()) {
                     this.plugin.getLogger().info("(RPGMOBS) Exp was shared!");
@@ -120,7 +120,7 @@ public class PartyListener implements Listener
     }
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onExpGain(final PlayerExperienceGainEvent event) {
-    	if(Hooks.isRPGLeveledMobsActive() == true && event.getSource() == ExpSource.MOB) { event.setCancelled(true); return;}
+    	if(Hooks.isRPGLeveledMobsActive() == true && event.getSource() == ExpSource.MOB) { return;}
         if (event.getSource() == ExpSource.COMMAND) {
             return;
         }
