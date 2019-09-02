@@ -2,8 +2,6 @@ package iomatix.spigot.RPGParty.hook;
 
 import java.util.List;
 import com.rit.sucy.config.Filter;
-import com.rit.sucy.config.CustomFilter;
-import java.util.Iterator;
 import com.sucy.skill.api.player.PlayerClass;
 import com.sucy.skill.api.player.PlayerData;
 import org.bukkit.OfflinePlayer;

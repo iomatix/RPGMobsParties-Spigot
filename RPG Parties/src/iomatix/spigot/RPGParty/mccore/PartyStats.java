@@ -1,7 +1,5 @@
 package iomatix.spigot.RPGParty.mccore;
 
-import java.util.List;
-import java.util.Iterator;
 import iomatix.spigot.RPGParty.Party;
 import iomatix.spigot.RPGParty.inject.Server;
 import java.util.ArrayList;

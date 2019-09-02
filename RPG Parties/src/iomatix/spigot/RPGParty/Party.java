@@ -65,7 +65,7 @@ public class Party implements IParty
     
     public void checkInvitations() {
         final String[] array;
-        final String[] members = array = this.invitations.keySet().toArray(new String[this.invitations.size()]);
+        array = this.invitations.keySet().toArray(new String[this.invitations.size()]);
         for (final String member : array) {
             if (this.invitations.get(member) < System.currentTimeMillis()) {
                 this.invitations.remove(member);

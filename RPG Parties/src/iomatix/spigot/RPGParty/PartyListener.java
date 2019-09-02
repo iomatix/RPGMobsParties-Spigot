@@ -12,6 +12,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.EventHandler;
 import iomatix.spigot.RPGParty.hook.Hooks;
 import org.bukkit.entity.Projectile;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -66,7 +67,7 @@ public class PartyListener implements Listener
         }
     }
     
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onExpGain(final PlayerExperienceGainEvent event) {
         if (event.getSource() == ExpSource.COMMAND) {
             return;
@@ -84,7 +85,11 @@ public class PartyListener implements Listener
         if (party != null) {
             event.setCancelled(true);
             this.shared = true;
-            party.giveExp(event.getPlayerData().getPlayer(), event.getExp(), event.getSource());
+            Bukkit.getScheduler().scheduleSyncDelayedTask(this.plugin, new Runnable() {
+                public void run() {
+                	party.giveExp(event.getPlayerData().getPlayer(), event.getExp(), event.getSource());           
+                }
+            }, 25L);
             this.shared = false;
             if (this.plugin.isDebug()) {
                 this.plugin.getLogger().info("Exp was shared!");
