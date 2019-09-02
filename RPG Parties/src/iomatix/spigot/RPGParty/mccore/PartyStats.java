@@ -18,7 +18,7 @@ public class PartyStats implements StatHolder
         this.player = player;
         this.level = level;
     }
-    
+   
     public ArrayList<String> getNames() {
         final ArrayList<String> stats = new ArrayList<String>();
         if (this.player.isOnline()) {
