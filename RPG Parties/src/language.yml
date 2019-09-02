@@ -4,7 +4,7 @@ Party:
     player-invited: '&6{player} &2was invited to join the party'
     player-left: '&6{player} &2has left the party'
     no-response: '&6{player} &4did not respond to the invitation'
-    chat-message: '&0[&bParty &b{player}&0]&b: &f{message}'
+    chat-message: '&0[&bParty&0] &e{player}&8: &f{message}'
     new-leader: '&6{player} &2is now the party leader'
     scoreboard-title: 'Party'
 

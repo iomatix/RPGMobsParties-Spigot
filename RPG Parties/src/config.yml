@@ -35,7 +35,7 @@ debug-messages: false
 #   random           | randomly distributes items, breaking up stacks
 #   sequential-stack | evenly distributes items received, not breaking up stacks
 #   random-stack     | randomly distributes items, not breaking up stacks
-item-sharing: sequential
+item-sharing: none
 #
 # Modifications to experience gained
 exp-modifications:

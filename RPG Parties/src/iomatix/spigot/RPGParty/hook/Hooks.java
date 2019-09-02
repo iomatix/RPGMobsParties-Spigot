@@ -14,12 +14,21 @@ public class Hooks
         if (isInstancesActive()) {
             InstancesHook.init(plugin);
         }
+        if (isRPGLeveledMobsActive()) {
+           
+        }
     }
     
     public static boolean isInstancesActive() {
     	
         return Bukkit.getPluginManager().getPlugin("Instances") != null;
     }
+    
+    public static boolean isRPGLeveledMobsActive() {
+    	
+        return Bukkit.getPluginManager().getPlugin("RPGLeveledMobs") != null;
+    }
+    
     
     public static IParty getParty(final Player player) {
         IParty party = null;
