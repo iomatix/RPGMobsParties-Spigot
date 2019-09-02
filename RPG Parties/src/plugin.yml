@@ -1,14 +1,12 @@
 main: iomatix.spigot.RPGParty.Parties
-softdepend: [SkillAPI, RPGLeveledMobs,MCCore,instances]
-load: POSTWORLD
+depend: [SkillAPI]
+softdepend: [Instances,MCCore,RPGLeveledMobs]
 name: RPGParties
 version: 1.0
 api-version: 1.14
 author: iomatix
 description: Parties plugin supports RPGLeveledMobs with SkillAPI.
-commands:
-  rpgmobs:
+permissions:
+  party.general:
     description: RPGParties prefix.
-    usage: /pt
-    permission: party.general
-    permission-message: You do not have party.general permission to use this command.
+    default: true
