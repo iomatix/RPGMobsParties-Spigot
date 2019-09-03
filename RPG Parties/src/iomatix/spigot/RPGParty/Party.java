@@ -171,6 +171,7 @@ public class Party implements IParty
         for (final String member : this.members) {
             final Player player = Server.getPlayer(member);
             if (player != null) {
+            	if(this.plugin.getMaxDistance() >= player.getLocation().distance(source.getLocation()) ) {
                 final PlayerData info = Server.getPlayerData(player);
                 final PlayerClass main = info.getMainClass();
                 final int lvl = (main == null) ? 0 : main.getLevel();
@@ -180,6 +181,7 @@ public class Party implements IParty
                     exp = (int)Math.ceil(baseAmount * Math.pow(2.0, -this.plugin.getLevelModifier() * dl * dl));
                 }
                 info.giveExp((double)exp, expSource);
+            }
             }
         }
     }
@@ -194,6 +196,7 @@ public class Party implements IParty
         for (final String member : this.members) {
             final Player player = Server.getPlayer(member);
             if (player != null) {
+                if(this.plugin.getMaxDistance() >= player.getLocation().distance(source.getLocation()) ) {
                 final PlayerData info = Server.getPlayerData(player);
                 final PlayerClass main = info.getMainClass();
                 final int lvl = (main == null) ? 0 : main.getLevel();
@@ -206,6 +209,7 @@ public class Party implements IParty
                 Parties.Main.vaultmodule.DepositMoneyToPlayer(player, (double)money);
                 
             }
+        }
         }
     
     }

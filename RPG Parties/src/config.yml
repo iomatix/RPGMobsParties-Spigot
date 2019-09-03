@@ -44,11 +44,13 @@ exp-modifications:
   # normally ranging from 0 to 1
   # 0 -> Full experience for all members
   # 1 -> Evenly split experience
-  members: 0.67
+  members: 0.35
   #
   # Modifier for the difference in level
   # between party members
   # Generally should be small decimals
   # (0 - 0.01 is a good range)
   # 0 -> No change in experience
-  level: 0.01
+  level: 0.003
+#Max distance for EXP sharing feature
+distance-sharing: 48

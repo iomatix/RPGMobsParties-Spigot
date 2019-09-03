@@ -14,7 +14,6 @@ import iomatix.spigot.RPGParty.hook.Hooks;
 import iomatix.spigot.rpgleveledmobs.events.RPGMobsGainExperience;
 import iomatix.spigot.rpgleveledmobs.events.RPGMobsGainMoney;
 import org.bukkit.entity.Projectile;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -93,7 +92,7 @@ public class PartyListener implements Listener
                 if (this.plugin.isDebug()) {
                     this.plugin.getLogger().info("(RPGMOBS) Exp was shared!");
                 }
-            } 	
+            } 
     }
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onRPGMobsGetMoney(final RPGMobsGainMoney event) {

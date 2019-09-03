@@ -30,7 +30,7 @@ public class VaultHandler implements Listener {
 	}
 	
 	public boolean isVaultOnline() {
-		return this.isVaultOnline();
+		return this.VaultOnline;
 	}
 	
 	public void DepositMoneyToPlayer(OfflinePlayer player,double amount) {

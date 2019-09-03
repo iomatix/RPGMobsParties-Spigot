@@ -62,6 +62,7 @@ public class Parties extends JavaPlugin
     private double levelModifier;
     private long inviteTimeout;
     private int maxSize;
+    private double maxDistance;
     
     public Parties() {
         this.parties = new ArrayList<Party>();
@@ -90,6 +91,7 @@ public class Parties extends JavaPlugin
         this.inviteTimeout = settings.getInt("invite-timeout") * 1000L;
         this.maxSize = settings.getInt("max-size");
         this.debug = settings.getBoolean("debug-messages");
+        this.maxDistance = settings.getDouble("distance-sharing");
         new PartyListener(this);
         final ConfigurableCommand root = new ConfigurableCommand((JavaPlugin)this, "pt", SenderType.ANYONE);
         root.addSubCommands(new ConfigurableCommand[] { new ConfigurableCommand((JavaPlugin)this, "accept", SenderType.PLAYER_ONLY, (IFunction)new CmdAccept(), "Accepts a party request", "", "party.general"), new ConfigurableCommand((JavaPlugin)this, "decline", SenderType.PLAYER_ONLY, (IFunction)new CmdDecline(), "Declines a party request", "", "party.general"), new ConfigurableCommand((JavaPlugin)this, "info", SenderType.PLAYER_ONLY, (IFunction)new CmdInfo(), "Views party information", "", "party.general"), new ConfigurableCommand((JavaPlugin)this, "invite", SenderType.PLAYER_ONLY, (IFunction)new CmdInvite(), "Invites a player to a party", "<player>", "party.general"), new ConfigurableCommand((JavaPlugin)this, "leave", SenderType.PLAYER_ONLY, (IFunction)new CmdLeave(), "Leaves your party", "", "party.general"), new ConfigurableCommand((JavaPlugin)this, "message", SenderType.PLAYER_ONLY, (IFunction)new CmdMsg(), "Sends a message to your party", "<message>", "party.general"), new ConfigurableCommand((JavaPlugin)this, "toggle", SenderType.PLAYER_ONLY, (IFunction)new CmdToggle(), "Toggles party chat on/off", "", "party.general") });
@@ -103,7 +105,10 @@ public class Parties extends JavaPlugin
         HandlerList.unregisterAll((Plugin)this);
         this.parties.clear();
     }
-    
+    public double getMaxDistance()
+    {
+    return this.maxDistance;
+    }
     public String getShareMode() {
         return this.sharing;
     }

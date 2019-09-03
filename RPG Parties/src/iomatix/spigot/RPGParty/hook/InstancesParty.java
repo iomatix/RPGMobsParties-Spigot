@@ -10,7 +10,6 @@ import com.sucy.skill.api.enums.ExpSource;
 import org.bukkit.entity.Player;
 import org.cyberiantiger.minecraft.instances.Party;
 import iomatix.spigot.RPGParty.Parties;
-import iomatix.spigot.RPGParty.inject.Server;
 import iomatix.spigot.RPGParty.IParty;
 
 public class InstancesParty implements IParty
@@ -51,6 +50,7 @@ public class InstancesParty implements IParty
         PlayerClass main = data.getMainClass();
         final int level = (main == null) ? 0 : main.getLevel();
         for (final Player member : this.party.getMembers()) {
+        	if(this.plugin.getMaxDistance() >= member.getLocation().distance(source.getLocation()) ) {
             final PlayerData info = SkillAPI.getPlayerData((OfflinePlayer)member);
             main = info.getMainClass();
             final int lvl = (main == null) ? 0 : main.getLevel();
@@ -61,6 +61,7 @@ public class InstancesParty implements IParty
             }
             info.giveExp((double)exp, expSource);
         }
+        }
     }
     @Override
     public void giveMoney(final Player source, final double amount) {
@@ -68,19 +69,24 @@ public class InstancesParty implements IParty
             return;
         }
         final double baseAmount = amount / (1.0 + (this.party.getMembers().size() - 1) * this.plugin.getMemberModifier());
-        
-
-        final int level = (source == null) ? 0 : source.getLevel();
+        final PlayerData data = SkillAPI.getPlayerData((OfflinePlayer)source);
+        PlayerClass main = data.getMainClass();
+        final int level = (main == null) ? 0 : main.getLevel();
         for (final Player member : this.party.getMembers()) {
-            final int lvl = (member == null) ? 0 : member.getLevel();
-            int money = (int)Math.ceil(baseAmount);
+        	if(this.plugin.getMaxDistance() >= member.getLocation().distance(source.getLocation()) ) {
+            final PlayerData info = SkillAPI.getPlayerData((OfflinePlayer)member);
+            main = info.getMainClass();
+            final int lvl = (main == null) ? 0 : main.getLevel();
+            double money = Math.ceil(baseAmount);
             if (this.plugin.getLevelModifier() > 0.0) {
                 final int dl = lvl - level;
-                money = (int)Math.ceil(baseAmount * Math.pow(2.0, -this.plugin.getLevelModifier() * dl * dl));
+                money = baseAmount * Math.pow(2.0, -this.plugin.getLevelModifier() * dl * dl);
             }
-                Parties.Main.vaultmodule.DepositMoneyToPlayer(source, (double)money);
-                
-            }
+            money = 0.01 + Math.round(money * 100)/100;
+            Parties.Main.vaultmodule.DepositMoneyToPlayer(member, (double)money);
+        	}
+        }
+ 
         }
     
     
