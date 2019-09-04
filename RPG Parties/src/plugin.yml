@@ -2,7 +2,7 @@ main: iomatix.spigot.RPGParty.Parties
 depend: [SkillAPI]
 softdepend: [Instances,MCCore,RPGLeveledMobs,Vault]
 name: RPGParties
-version: 1.0
+version: 1.5
 api-version: 1.14
 author: iomatix
 description: Parties plugin supports RPGLeveledMobs with SkillAPI.

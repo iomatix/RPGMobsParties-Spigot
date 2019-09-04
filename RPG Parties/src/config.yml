@@ -37,20 +37,43 @@ debug-messages: false
 #   random-stack     | randomly distributes items, not breaking up stacks
 item-sharing: none
 #
-# Modifications to experience gained
+# Modifications to experience gained (SkillAPI feature, RPGMobs supported)
 exp-modifications:
   #
   # Modifier for the number of members
-  # normally ranging from 0 to 1
-  # 0 -> Full experience for all members
-  # 1 -> Evenly split experience
-  members: 0.35
+  # normally ranging from 0 to 1.
+  # 0 -> Full experience for all members.
+  # 1 -> Split experience.
+  # 0-1 range increases the total experience gain. 1 and more decreases the total experience gain. (For parties)
+  # So values above 1 will result as a Party Penalty.
+  members: 0.75
   #
   # Modifier for the difference in level
-  # between party members
-  # Generally should be small decimals
+  # between party members.
+  # Generally should be small decimals.
   # (0 - 0.01 is a good range)
-  # 0 -> No change in experience
+  # 0 -> No change in experience.
   level: 0.003
-#Max distance for EXP sharing feature, -1 to set up infinite.
+  #
+  # Modifications to money gained (RPGMobs feature)
+money-modifications:
+  #
+  # Modifier for the number of members
+  # normally ranging from 0 to 1
+  # 0 -> Full money for all members
+  # 1 -> Split money
+  # 0-1 range increases the total income. 1 and more decreases the total income. (For parties)
+  # So values above 1 will result as a Party Fee.
+  members: 1
+  #
+  # Modifier for the difference in level
+  # between party members.
+  # Generally should be small decimals.
+  # (0 - 0.01 is a good range)
+  # 0 -> No change in income.
+  level: 0
+#
+# Max distance in blocks for EXP sharing feature. 
+# -1 -> share it everywhere, even in different worlds. 
+# Recommended range is 32-80. (2 - 5 chunks).
 distance-sharing: 48
