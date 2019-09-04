@@ -171,7 +171,7 @@ public class Party implements IParty
         for (final String member : this.members) {
             final Player player = Server.getPlayer(member);
             if (player != null) {
-            	if(this.plugin.getMaxDistance() >= player.getLocation().distance(source.getLocation()) ) {
+            	if(this.plugin.getMaxDistance() >= player.getLocation().distance(source.getLocation()) || this.plugin.getMaxDistance() == -1  ) {
                 final PlayerData info = Server.getPlayerData(player);
                 final PlayerClass main = info.getMainClass();
                 final int lvl = (main == null) ? 0 : main.getLevel();
@@ -196,7 +196,7 @@ public class Party implements IParty
         for (final String member : this.members) {
             final Player player = Server.getPlayer(member);
             if (player != null) {
-                if(this.plugin.getMaxDistance() >= player.getLocation().distance(source.getLocation()) ) {
+                if(this.plugin.getMaxDistance() >= player.getLocation().distance(source.getLocation()) || this.plugin.getMaxDistance() == -1) {
                 final PlayerData info = Server.getPlayerData(player);
                 final PlayerClass main = info.getMainClass();
                 final int lvl = (main == null) ? 0 : main.getLevel();

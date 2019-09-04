@@ -52,5 +52,5 @@ exp-modifications:
   # (0 - 0.01 is a good range)
   # 0 -> No change in experience
   level: 0.003
-#Max distance for EXP sharing feature
+#Max distance for EXP sharing feature, -1 to set up infinite.
 distance-sharing: 48

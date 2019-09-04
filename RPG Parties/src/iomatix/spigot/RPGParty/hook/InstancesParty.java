@@ -50,7 +50,7 @@ public class InstancesParty implements IParty
         PlayerClass main = data.getMainClass();
         final int level = (main == null) ? 0 : main.getLevel();
         for (final Player member : this.party.getMembers()) {
-        	if(this.plugin.getMaxDistance() >= member.getLocation().distance(source.getLocation()) ) {
+        	if(this.plugin.getMaxDistance() >= member.getLocation().distance(source.getLocation()) || this.plugin.getMaxDistance() == -1) {
             final PlayerData info = SkillAPI.getPlayerData((OfflinePlayer)member);
             main = info.getMainClass();
             final int lvl = (main == null) ? 0 : main.getLevel();
@@ -73,7 +73,7 @@ public class InstancesParty implements IParty
         PlayerClass main = data.getMainClass();
         final int level = (main == null) ? 0 : main.getLevel();
         for (final Player member : this.party.getMembers()) {
-        	if(this.plugin.getMaxDistance() >= member.getLocation().distance(source.getLocation()) ) {
+        	if(this.plugin.getMaxDistance() >= member.getLocation().distance(source.getLocation()) || this.plugin.getMaxDistance() == -1) {
             final PlayerData info = SkillAPI.getPlayerData((OfflinePlayer)member);
             main = info.getMainClass();
             final int lvl = (main == null) ? 0 : main.getLevel();
