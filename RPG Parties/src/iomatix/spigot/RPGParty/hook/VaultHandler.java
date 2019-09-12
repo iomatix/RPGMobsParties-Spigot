@@ -8,6 +8,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 import iomatix.spigot.RPGParty.Parties;
+import iomatix.spigot.rpgleveledmobs.Main;
 import iomatix.spigot.rpgleveledmobs.mobscaling.MoneyScalingModule;
 import net.milkbowl.vault.economy.Economy;
 
@@ -36,7 +37,7 @@ public class VaultHandler implements Listener {
 	public void DepositMoneyToPlayer(OfflinePlayer player,double amount) {
 		economy.depositPlayer(player,amount);
 		try{
-		MoneyScalingModule.SendMoneyMessageToPlayer(amount,(Player) player);
+		Main.RPGMobs.getMoneyScalingModuleInstance().SendMoneyMessageToPlayer(amount,(Player) player);
 		}catch(Exception e) {}
 	}
 	
