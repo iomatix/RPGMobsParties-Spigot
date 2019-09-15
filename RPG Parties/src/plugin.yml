@@ -5,7 +5,7 @@ name: RPGParties
 version: 1.6.1
 api-version: 1.14
 author: iomatix
-description: Parties plugin supports RPGLeveledMobs with SkillAPI.
+description: Parties plugin designed for SkillAPI which supports RPGLeveledMobs plugin.
 permissions:
   party.general:
     description: RPGParties prefix.
