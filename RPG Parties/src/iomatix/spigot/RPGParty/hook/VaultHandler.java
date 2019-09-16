@@ -17,12 +17,17 @@ public class VaultHandler implements Listener {
 	private boolean VaultOnline = false;
 	
 	public VaultHandler() {
-		
+		try {
 		Bukkit.getPluginManager().registerEvents((Listener) this, (Plugin) Parties.Main);
 		RegisteredServiceProvider<Economy> economyProvider = Bukkit.getServicesManager()
 				.getRegistration(net.milkbowl.vault.economy.Economy.class);
 		this.economy = economyProvider.getProvider();
 		VaultOnline = true;
+		}catch(NullPointerException e)
+		{
+			VaultOnline = false;
+		}
+		
 		
 	}
 	
@@ -35,10 +40,11 @@ public class VaultHandler implements Listener {
 	}
 	
 	public void DepositMoneyToPlayer(OfflinePlayer player,double amount) {
+		if(isVaultOnline()) {
 		economy.depositPlayer(player,amount);
 		try{
 		Main.RPGMobs.getMoneyScalingModuleInstance().SendMoneyMessageToPlayer(amount,(Player) player);
 		}catch(Exception e) {}
 	}
-	
+	}
 }
