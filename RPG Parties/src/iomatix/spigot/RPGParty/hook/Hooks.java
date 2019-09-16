@@ -14,9 +14,6 @@ public class Hooks
         if (isInstancesActive()) {
             InstancesHook.init(plugin);
         }
-        if (isRPGLeveledMobsActive()) {
-           
-        }
     }
     
     public static boolean isInstancesActive() {
