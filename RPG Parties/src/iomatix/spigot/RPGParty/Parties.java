@@ -124,6 +124,8 @@ public class Parties extends JavaPlugin {
 		PartyBoardManager.clearBoards(this);
 		HandlerList.unregisterAll((Plugin) this);
 		this.parties.clear();
+		System.out.println(ChatColor.GRAY +"["+ChatColor.GOLD + "RPGParties"+ ChatColor.GRAY+"] "+ ChatColor.GRAY + "RPG Parties Disabled!");
+		
 	}
 
 	public double getMaxDistance() {
