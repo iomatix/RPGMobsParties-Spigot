@@ -1,6 +1,7 @@
 package iomatix.spigot.RPGParty;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import com.rit.sucy.config.FilterType;
 import java.util.List;
@@ -28,6 +29,7 @@ import com.rit.sucy.config.CommentedConfig;
 import com.rit.sucy.config.CommentedLanguageConfig;
 import java.util.ArrayList;
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 public class Parties extends JavaPlugin {
 	public static Parties Main;
@@ -113,6 +115,8 @@ public class Parties extends JavaPlugin {
 						(IFunction) new CmdToggle(), "Toggles party chat on/off", "", "party.general") });
 		CommandManager.registerCommand(root);
 		Hooks.init(this);
+		
+		System.out.print(ChatColor.GRAY +"["+ChatColor.GOLD + "RPGParties"+ ChatColor.GRAY+"] "+ ChatColor.GREEN + "RPGParties Enabled!");
 	}
 
 	public void onDisable() {
