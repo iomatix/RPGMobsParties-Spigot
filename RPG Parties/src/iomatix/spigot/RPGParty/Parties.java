@@ -116,7 +116,7 @@ public class Parties extends JavaPlugin {
 		CommandManager.registerCommand(root);
 		Hooks.init(this);
 		
-		System.out.println(ChatColor.GRAY +"["+ChatColor.GOLD + "RPGParties"+ ChatColor.GRAY+"] "+ ChatColor.GREEN + "RPGParties Enabled!");
+		System.out.println(ChatColor.GRAY +"["+ChatColor.GOLD + "RPGParties"+ ChatColor.GRAY+"] "+ ChatColor.GREEN + "RPG Parties Enabled!");
 	}
 	@Override
 	public void onDisable() {
