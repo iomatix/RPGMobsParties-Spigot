@@ -70,7 +70,7 @@ public class Parties extends JavaPlugin {
 		this.parties = new ArrayList<Party>();
 		this.toggled = new ArrayList<String>();
 	}
-
+	@Override
 	public void onEnable() {
 		(Parties.Main = this).loadModules();
 
@@ -116,9 +116,9 @@ public class Parties extends JavaPlugin {
 		CommandManager.registerCommand(root);
 		Hooks.init(this);
 		
-		System.out.print(ChatColor.GRAY +"["+ChatColor.GOLD + "RPGParties"+ ChatColor.GRAY+"] "+ ChatColor.GREEN + "RPGParties Enabled!");
+		System.out.println(ChatColor.GRAY +"["+ChatColor.GOLD + "RPGParties"+ ChatColor.GRAY+"] "+ ChatColor.GREEN + "RPGParties Enabled!");
 	}
-
+	@Override
 	public void onDisable() {
 		this.task.cancel();
 		PartyBoardManager.clearBoards(this);
