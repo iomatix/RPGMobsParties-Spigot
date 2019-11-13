@@ -3,7 +3,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="G:/Minecraft - Server/_Plugins/_Depend/MCCore.jar"/>
-	<classpathentry kind="lib" path="G:/Minecraft - Server/_Plugins/_Depend/SkillAPI.jar"/>
+	<classpathentry kind="lib" path="G:/Minecraft - Server/_Moje_Pluginy/__REPOSITORIES/SkillAPI/target/SkillAPI.jar"/>
 	<classpathentry kind="lib" path="G:/Minecraft - Server/_Moje_Pluginy/Spigot/Spigot-API/target/spigot-api-1.14.4-R0.1-SNAPSHOT-shaded.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="https://hub.spigotmc.org/javadocs/spigot/"/>
